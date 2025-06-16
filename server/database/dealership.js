@@ -40,4 +40,4 @@ const dealerships = new Schema({
   }
 });
 
-module.exports = mongoose.model('dealerships', dealerships);
+module.exports = mongoose.model('Dealership', dealerships);
