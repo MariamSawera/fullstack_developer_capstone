@@ -45,3 +45,31 @@ urlpatterns = [
         TemplateView.as_view(template_name="index.html"),
     ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+# --- Last lines of djangoproj/urls.py ---------------------------------
+from pathlib import Path
+from django.views.static import serve
+from django.urls import re_path
+from django.conf import settings
+
+# absolute folder that actually holds logo192.png
+spa_root = Path(settings.BASE_DIR) / "frontend" / "build"
+
+# sanity check at import‑time: print once so you see it in the console
+print("Serving React root files from:", spa_root)
+
+urlpatterns += [
+    re_path(r"^logo192\.png$", serve, {
+        "document_root": spa_root,
+        "path": "logo192.png"
+    }),
+    re_path(r"^logo512\.png$", serve, {
+        "document_root": spa_root,
+        "path": "logo512.png"
+    }),
+    re_path(r"^favicon\.ico$", serve, {
+        "document_root": spa_root,
+        "path": "favicon.ico"
+    }),
+]
