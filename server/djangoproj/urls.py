@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
@@ -62,16 +63,13 @@ print("Serving React root files from:", spa_root)
 
 
 urlpatterns += [
-    re_path(r"^logo192\.png$", serve, {
-        "document_root": spa_root,
-        "path": "logo192.png"
-    }),
-    re_path(r"^logo512\.png$", serve, {
-        "document_root": spa_root,
-        "path": "logo512.png"
-    }),
-    re_path(r"^favicon\.ico$", serve, {
-        "document_root": spa_root,
-        "path": "favicon.ico"
-    }),
+    re_path(
+        r"^logo192\.png$", serve, {"document_root": spa_root, "path": "logo192.png"}
+    ),
+    re_path(
+        r"^logo512\.png$", serve, {"document_root": spa_root, "path": "logo512.png"}
+    ),
+    re_path(
+        r"^favicon\.ico$", serve, {"document_root": spa_root, "path": "favicon.ico"}
+    ),
 ]
