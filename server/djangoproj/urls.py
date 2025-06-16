@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
@@ -53,11 +52,14 @@ from django.views.static import serve
 from django.urls import re_path
 from django.conf import settings
 
+
 # absolute folder that actually holds logo192.png
 spa_root = Path(settings.BASE_DIR) / "frontend" / "build"
 
+
 # sanity check at import‑time: print once so you see it in the console
 print("Serving React root files from:", spa_root)
+
 
 urlpatterns += [
     re_path(r"^logo192\.png$", serve, {
