@@ -1,0 +1,11 @@
+{
+  "esversion": 8,
+  "node": true,
+  "browser": false,          // flip to true if any code is meant for browsers
+  "asi": false,              // still warn if you forget semicolons
+  "unused": true,            // keep the helpful “unused variable” warnings
+  "undef": true,             // warn on undeclared vars
+  "globals": {               // add any globals your code expects
+    "process": true
+  }
+}
