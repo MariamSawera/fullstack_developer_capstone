@@ -22,7 +22,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
-from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -61,18 +60,18 @@ print("Serving React root files from:", spa_root)
 
 urlpatterns += [
     re_path(
-        r"^logo192\.png$", 
-        serve, 
+        r"^logo192\.png$",
+        serve,
         {"document_root": spa_root, "path": "logo192.png"}
     ),
     re_path(
-        r"^logo512\.png$", 
-        serve, 
+        r"^logo512\.png$",
+        serve,
         {"document_root": spa_root, "path": "logo512.png"}
     ),
     re_path(
-        r"^favicon\.ico$", 
-        serve, {
-            "document_root": spa_root, "path": "favicon.ico"}
+        r"^favicon\.ico$",
+        serve,
+        {"document_root": spa_root, "path": "favicon.ico"}
     ),
 ]
