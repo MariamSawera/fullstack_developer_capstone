@@ -75,17 +75,22 @@ const Dealer = () => {
     get_reviews();
     if (sessionStorage.getItem("username")) {
       setPostReview(
-        <a href={post_review}>
-          <img
-            src={review_icon}
-            style={{ width: '10%', marginLeft: '10px', marginTop: '10px' }}
-            alt='Post Review'
-          />
-        </a>
+        <>
+          <a href={post_review}>
+            <img
+              src={review_icon}
+              style={{ width: '10%', marginLeft: '10px', marginTop: '10px' }}
+              alt='Post Review'
+            />
+          </a>
+          <a href={`/searchcars/${id}`} style={{ marginLeft: '15px' }}>
+            Search Cars
+          </a>
+        </>
       );
     }
   }, []);
-
+  
   return (
     <div style={{ margin: "20px" }}>
       <Header />
