@@ -8,6 +8,8 @@ urlpatterns = [
     # path for registration
     path(route="register/", view=views.registration, name="register"),
     path("register", views.registration),  # ← new
+
+    path(route='get_inventory/<int:dealer_id>', view=views.get_inventory, name='get_inventory'),
     # path for login
     path(route="login/", view=views.login_user, name="login"),
     path("login", views.login_user),  # ← new
@@ -36,5 +38,5 @@ urlpatterns = [
     ),
     # path for add a review view
     path(route="add_review/", view=views.add_review, name="add_review"),
-    path("add_review", views.add_review),  # ← new
+    path("add_review", views.add_review), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
