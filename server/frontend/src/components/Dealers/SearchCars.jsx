@@ -14,17 +14,35 @@ const SearchCars = () => {
   let dealer_url = `/djangoapp/get_inventory/${id}`;
 
   let fetch_url = `/djangoapp/dealer/${id}`;
-  
-  const fetchDealer = async ()=>{
-    const res = await fetch(fetch_url, {
-      method: "GET"
-    });
+
+
+  const fetchDealer = async () => {
+  try {
+    const res = await fetch(fetch_url, { method: "GET" });
     const retobj = await res.json();
-    if(retobj.status === 200) {
-      let dealer = retobj.dealer;
-      setDealer({"full_name":dealer[0].full_name})
+    if (retobj.status === 200 && Array.isArray(retobj.dealer) && retobj.dealer.length > 0) {
+      setDealer({ full_name: retobj.dealer[0].full_name });
+    } else {
+      setDealer({ full_name: "Unknown Dealer" });
     }
+  } catch (error) {
+    console.error("Failed to fetch dealer:", error);
+    setDealer({ full_name: "Error loading dealer" });
   }
+};
+
+  
+//   const fetchDealer = async ()=>{
+//     const res = await fetch(fetch_url, {
+//       method: "GET"
+//     });
+//     const retobj = await res.json();
+//     if(retobj.status === 200) {
+//       let dealer = retobj.dealer;
+//       setDealer({"full_name":dealer[0].full_name})
+//     }
+//   }
+
 
   const populateMakesAndModels = (cars)=>{
     let tmpmakes = []
@@ -45,14 +63,17 @@ const SearchCars = () => {
     const retobj = await res.json();
     
     if(retobj.status === 200) {
-      let cars = Array.from(retobj.cars)
+        let cars = Array.from(retobj.cars ?? []);
+    //   let cars = Array.from(retobj.cars)
       setCars(cars);
       populateMakesAndModels(cars);
     }
   }
 
   const setCarsmatchingCriteria = async(matching_cars)=>{
-    let cars = Array.from(matching_cars)
+    // let cars = Array.from(matching_cars)
+    let cars = Array.from(matching_cars ?? []);
+
     console.log("Number of matching cars "+cars.length);
 
     let makeIdx = document.getElementById('make').selectedIndex;
